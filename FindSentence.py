@@ -1,6 +1,7 @@
 import unittest.mock
 from nltk.corpus import wordnet as wn
-abb = ['mr', 'ms', 'mrs', 'pres', 'gen']
+abb = {'mr', 'ms', 'mrs', 'pres', 'gen'}
+
 # Find the end of the sentence, and return the index
 # Will return -1 if there is no period 
 # String -> Integer   
