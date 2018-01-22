@@ -4,6 +4,7 @@ Represents a model for summarizing text.
 """
 from FindSentence import findSentence
 from nltk.corpus import wordnet as wn
+from ImageToText import ImageText
 import operator
 import inflect
 p = inflect.engine()
@@ -39,6 +40,17 @@ class Model:
         vocab_words = self.__find_key_words__(mapping_occurances.copy())
         return summarized, vocab_words
     
+    """
+    Added in 1/22/18. Functionality existed before, but this method did not.
+    
+    Takes in a picture and calls an OCR to translate it into text.
+    
+    @param pic represents the picture to be converted.
+    @return a text version of the picture.
+    """
+    def picture_to_text(self, pic):
+        return ImageText(pic).text()
+        
     """
     Splits the text into sentences. Removes periods from sentences.
     

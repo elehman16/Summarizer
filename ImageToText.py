@@ -5,22 +5,23 @@ from ParseString import parseString
 from ConcatString import concatString
 from autocorrect import spell
 
-# ImageText("CivilWar.png", "Battle of Antietem", True)
-
-# Represents a picture and a way to summarize it
+"""
+Update 1/22/18 - Adding in comments to clarify functions, and clean up code.
+"""
 class ImageText:
     
-    def __init__(self, imgloc, title, flag):
+    """
+    Represents a picture and a way to summarize it.
+    
+    @param imgloc represents the location of the image
+    """
+    def __init__(self, imgloc):
         self.img = Image.open(imgloc)
-        self.txt = ImageToText(self.img)
-        self.title = title
-        self.flag = flag
-        
-    # Purpose: To re-adjust the image to text portion of this         
-    # class, as the ocr does a pretty trash job of interpretation
-    # This function will go through individual words and attempt to
-    # parse them and use an autocorrector on them.
-    # Only do this part if they have autocorrect flag as true
+        self.txt = self.ImageToText(self.img)
+    
+    """
+    Gets the text from the image.
+    """
     def text(self):
         if(self.flag):
             lolos = parseString(self.txt)
@@ -36,23 +37,38 @@ class ImageText:
             return concatString(r)
         else: 
             return self.txt
+            
+    """
+    Added to this class 1/22/18 (it was just a helper outside this class 
+    before).
+    
+    Converts the image into text.
+    
+    @param img represents the image to parse into text
+    @returns the text read from the document
+    
+    """
+    def __image_to_text__(self, img):
+            try:
+                  builtins.open = self.bin_open
+                  bts = pytesseract.image_to_string(img)
+            finally:
+                  builtins.open = open
+            return (str(bts, 'cp1252', 'ignore'))
+            
+    """
+    Added to this class 1/22/18 (it was just a helper outside this class 
+    before).
+    
+    Helper to open the file.
+    
+    @param filename is location of the file.
+    @param mode is the type of opening.
+    """
+    def bin_open(self, filename, mode='rb'):       
+        return open(filename, mode)
+
                   
-# Image -> String
-# Converst image to text
-def ImageToText(img):
-        try:
-              builtins.open = bin_open
-              bts = pytesseract.image_to_string(img)
-        finally:
-              builtins.open = original_open
-        return (str(bts, 'cp1252', 'ignore'))
-        
-        
-# Helps out with image to text conversion        
-# note, the default mode now opens in binary        
-original_open = open
-def bin_open(filename, mode='rb'):       
-    return original_open(filename, mode)
 
 
 
