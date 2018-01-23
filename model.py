@@ -10,8 +10,9 @@ import inflect
 p = inflect.engine()
 
 filterWords = {'i', 'he', 'her', 'his', 'him', 'she', 'as', 'are', 'in',
-               'like', 'much', r'can', 'so', 'if', 'its', 'may', 'use', 'come', 
-               'or', 'a', 'at', 'it', 'be', 'no', 'has'}
+               'like', 'much', 'can', 'so', 'if', 'its', 'may', 'use', 'come', 
+               'or', 'a', 'at', 'it', 'be', 'no', 'has', 'an', 'should', 
+               'would', 'could'}
 
 class Model:
     
@@ -202,5 +203,14 @@ class Model:
     """
     def __find_key_words__(self, mapping):
         sorted_list = self.__sort__(mapping)
-        return self.__select_top_n__(sorted_list)
+        sorted_list = self.__select_top_n__(sorted_list)
+        ans = []
+        i = 0
+        for v in sorted_list:
+            i += 1
+            if (i != len(sorted_list)):
+                ans.append(v + ", ")
+            else:
+                ans.append(v)
+        return ans
         

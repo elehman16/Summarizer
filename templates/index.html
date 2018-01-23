@@ -1,0 +1,72 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <style>
+
+        .size-title {
+          margin-top: 10px;
+          height: 75px;
+          width: 90%;
+          border-style: solid;
+          border-width: thin;
+          border-color: #F5F5F5;
+          background-color: #F8F8F8;
+          margin-left: 5%;
+        }
+
+        .blank-fill {
+
+          background-color: #F8F8F8;
+        }
+
+
+
+      </style>
+    </head>
+    <body>
+
+
+        <!-- Title of the Summarizer -->
+        <div class = "size-title row boxed">
+            <h1 style = "margin-left: 10px;"> Summarizer </h1>
+        </div>
+
+      <div class = "container-fluid" style = "margin-top: 5px; margin-left: 5%;">
+          <div class ="row">
+              <div class = "col-xs-3 blank-fill" style = "height: 35px; width: 22%;">
+                <h4> Input Text </h4>
+              </div>
+              <button id = "upload-but" type="button" class="btn" style = "margin-left: 14px; height: 35px; width: 23%">
+                Upload
+                <form enctype="multipart/form-data" id = "form" action="" method="post">
+                  <input type=file id = "fileInput" name="pic" accept="image/*" style="height:0px;overflow:hidden;">
+                </form>
+
+              </button>
+              <button id = "summary-but" type="button" class="btn" style = "margin-left: 14px;
+              height: 35px; width: 23%"> Summary </button>
+              <button id = "key-vocab-but" type="button" class="btn" style =
+              "margin-left: 14px; height: 35px; width: 23%"> Key Vocab Words</button>
+          </div>
+      </div>
+
+      <div class = "container-fluid" style = "margin-top: 5px; margin-left: 5%;">
+        <div class = "row" style = "width: 100%;">
+          <textarea id = "text-to-summarize" class="col-xs-3 form-control"
+                    style = "width: 47%; height: 75%; resize: none;
+                    overflow-y: scroll; max-height: 75%;">{{ text }} </textarea>
+
+
+          <textarea readonly class="col-xs-3 form-control" style = "width: 48.5%; height: 75%;
+           resize: none; margin-left: 20px;
+           overflow-y: scroll; max-height: 75%;">{% for r in user_response %}{{r}}{% endfor %} </textarea>
+        </div>
+      </div>
+
+      </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='scripts/post.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='scripts/index.js')}}"></script>
+    </body>
+</html>
