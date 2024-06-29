@@ -5,7 +5,7 @@ Created on Mon Jan 22 17:54:50 2018
 """
 
 import flask
-from Model import Model
+from model import Model
 from werkzeug.datastructures import FileStorage
 
 application = flask.Flask(__name__)
